@@ -33,3 +33,83 @@ This block of code in `webpack.config.babel.js` will create 4 different JavaScri
 ```
 
 Now you can use these files in various areas of the site so unnecessary JavaScript isn't downloaded when visiting the homepage.
+
+## Loading modules on-demand for better performance
+
+Let's say the homepage allows users to see a map of store locations when they click a "See Locations" button. It could be costly to run the JavaScript for this map when the page loads. What if the user never presses the "See Locations" button? It would run for them anyways. Webpack can help you asynchronously load modules through the `require.ensure` function.
+
+**/js/home/index.js**
+```js
+// When a user clicks the "See Locations" button, load the /js/map/index.js module
+$('[data-load-map]').on('click', function () {
+  // Fetch the dependency
+  require.ensure(["../map/index.js"], function (require) {
+    // And then require it
+    require("../map/index.js");
+  });
+});
+```
+
+**/js/map/index.js**
+```js
+// Import React dependencies
+// Remember, these don't load until you've clicked the "See Locations" button.
+// Yay, performance!
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Create a Map class
+let Map = React.createClass({
+  render: function() {
+    // I'm too lazy to get a real map loaded. Just pretend, okay?
+    return (
+      <h2 className="map">
+        Hi! I came from an async React module.
+      </h2>
+    );
+  }
+});
+
+// Inject the Map into the #map element
+ReactDOM.render(
+  <Map />,
+  document.getElementById('map')
+);
+```
+
+### Why stop there? Inject styles, too!
+If this module only exists if JavaScript is enabled, why not make the accompanying CSS a JavaScript require, too? No need to bloat the CSS with stuff we're not using. Just add the style loader to the Webpack config file:
+
+```js
+module: {
+  loaders: [
+    {
+      test: /\.css/,
+      loaders: ['style', 'css']
+    }
+  ]
+}
+```
+
+**/js/map/styles.css**
+```css
+.map {
+  color: #ff0;
+  padding: 1rem;
+}
+```
+
+And then require the CSS in the Map module!
+
+```js
+// Import styles
+import styles from './styles.css';
+
+// React imports and remaining code...
+```
+
+Now your CSS will be loaded asynchronously into the `<head>` when the "See Locations" button is clicked.
+
+## Conclusion
+
+Webpack can be really beneficial so your code is optimized for run-time and asynchronous loading. Using code-splitting, module loading and more can drastically improve your site's performance.
