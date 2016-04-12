@@ -2,6 +2,12 @@
 
 This repo is a brief demo of how to do code-splitting and asynchronous module loading using Webpack.
 
+## Installing
+1. Clone the repo
+2. Run `npm i` in the root
+3. Run `webpack` in the root
+4. View the index.html page in your browser
+
 ## Code-splitting
 
 There are many cases where you don't want _all_ JavaScript bundled into a single `app.js` file that gets downloaded on a visit to the homepage.
