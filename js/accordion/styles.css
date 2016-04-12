@@ -1,0 +1,13 @@
+.accordion__content {
+  display: none;
+}
+
+#accordion1:target,
+#accordion2:target,
+#accordion3:target {
+  display: block;
+}
+
+.accordion__title {
+  display: block;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Webpack Demo!</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Webpack Demo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Welcome!</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus enim vero, autem adipisci ipsa cumque tenetur! Ratione, impedit fugiat maxime commodi veritatis quia reiciendis soluta repudiandae, nemo voluptates, doloribus modi!</p>
+
+        <button class="btn btn-primary" data-load-map>Inject A React Module</button>
+        <button class="btn btn-primary" data-load-accordion>Inject An Accordion</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div id="map" class="col-md-6"></div>
+      <div id="accordion" class="col-md-6"></div>
+    </div>
+  </div>
+
+  <script src="/public/common.js"></script>
+  <script src="/public/global.js"></script>
+  <script src="/public/home.js"></script>
+</body>
+</html>
