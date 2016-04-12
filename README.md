@@ -1,5 +1,7 @@
 # Webpack code-splitting and async module loading
 
+![Using Webpack to code-split and async load modules](https://zippy.gfycat.com/CraftyUnfortunateGermanpinscher.gif)
+
 This repo is a brief demo of how to do code-splitting and asynchronous module loading using Webpack.
 
 ## Installing
